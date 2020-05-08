@@ -1,8 +1,14 @@
-const server = require('server');
 
-const { get, post } = server.router;
+const express = require("express");
 
-// Launch server
-server({ port: 3000 }, [
-    get('/', ctx => 'Hello world!')
-]);
+const server = express();
+
+server.use(express.json());
+
+server.get("/", (req, res) => {
+  res.json({ message: "Hello from the Server!" });
+});
+
+server.listen(5000, () => {
+  console.log("Server initialized on port 5000");
+});
